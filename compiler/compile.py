@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/ppython
 from ply import lex
 from dna.base import DNAStorage
 from dna.components import DNARoot

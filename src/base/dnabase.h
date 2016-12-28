@@ -31,7 +31,9 @@ typedef unsigned short point_index_t;
 
 #include <datagramIterator.h>
 #include <luse.h>
-
+#include <lvecBase4.h>
+#include "lvecBase3.h"
+#ifndef CPPPARSER
 inline LVecBase4f dgi_extract_color(DatagramIterator& dgi)
 {
     double r = dgi.get_uint8() / 255.;
@@ -43,6 +45,7 @@ inline LVecBase4f dgi_extract_color(DatagramIterator& dgi)
 
 #define DGI_EXTRACT_COLOR dgi_extract_color(dgi)
 
+#endif
 // PROPERTY MACRO (TYPE, NAME)
 // This is a helper for classes
 // Declares protected m_NAME variable of type TYPE
@@ -82,6 +85,7 @@ inline LVecBase4f dgi_extract_color(DatagramIterator& dgi)
 // Reduces litter in class declaration
 #define WRITE_PDNA INLINE virtual void write_pdna(Datagram& dg, bool recursive=true)
 
+#ifndef CPPPARSER
 // Helper functions
 inline void pack_color(Datagram& dg, const LVecBase3f& color)
 {
@@ -99,6 +103,7 @@ inline void pack_color(Datagram& dg, const LVecBase4f& color)
 }
 
 #define PACK_COLOR pack_color(dg, m_color)
+#endif
 
 #define COMP_CODE(X) INLINE virtual unsigned char get_comp_code() {return X;}
 #define COMP_NAME(X) INLINE virtual const char* get_comp_name() {return #X;}

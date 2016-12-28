@@ -14,7 +14,7 @@ endif()
 if(PYTHON_VERSION_MAJOR EQUAL 2)
     set(PYTHON2_EXECUTABLE "${PYTHON_EXECUTABLE}")
 else()
-    set(PYTHON2_EXECUTABLE python2)
+    set(PYTHON2_EXECUTABLE ppython)
 endif()
 
 ### Panda3D dir ###
@@ -106,16 +106,7 @@ if(WIN32)
     add_definitions(/wd4275)
 endif()
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    execute_process(COMMAND "${CMAKE_C_COMPILER}" -dumpversion OUTPUT_VARIABLE GCC_VERSION)
-    message(STATUS "GCC Version: ${GCC_VERSION}")
-    if(GCC_VERSION VERSION_GREATER 4.7 OR GCC_VERSION VERSION_EQUAL 4.7)
-        add_definitions(-std=c++11) # Enable the new C++ standard
-    else()
-        add_definitions(-std=c++0x) # Enable the new C++ standard
-    endif()
-endif()
-
+add_definitions(-std=c++11) # Enable the new C++ standard
 add_definitions(-DBUILDING_DNA)
 
 set(PANDA_LIBS
@@ -126,7 +117,6 @@ set(PANDA_LIBS
     ${LIBPFX}p3dtool
     ${LIBPFX}p3dtoolconfig
     ${LIBPFX}p3direct
-    ${LIBPFX}p3pandatoolbase
 )
 
 # Add p3interrogatedb, if it exists
@@ -141,7 +131,7 @@ else()
     message(STATUS "libp3interrogatedb not found")
 endif()
 
-add_library(libpandadna SHARED
+add_library(libpandadna MODULE
     ${BASE_FILES}
     ${SUIT_FILES}
     ${COMPONENTS_FILES}
