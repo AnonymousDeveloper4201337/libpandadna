@@ -120,7 +120,6 @@ endif()
 
 add_definitions(-DBUILDING_DNA)
 
-<<<<<<< HEAD
 if (NOT BUILD_STATIC_LIB)
     set(PANDA_LIBS
         ${LIBPFX}p3framework
@@ -183,22 +182,9 @@ if (NOT BUILD_STATIC_LIB)
                            COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
                            COMMENT "Interrogate")
     endif()
-=======
-set(PANDA_LIBS
-    ${LIBPFX}p3framework
-    ${LIBPFX}panda
-    ${LIBPFX}pandafx
-    ${LIBPFX}pandaexpress
-    ${LIBPFX}p3dtool
-    ${LIBPFX}p3dtoolconfig
-    ${LIBPFX}p3direct
-    ${LIBPFX}p3pandatoolbase
-)
->>>>>>> parent of d3dc1bf... fix mac
 
 else()
 
-<<<<<<< HEAD
     if(WIN32)
         add_library(libpandadna STATIC
             ${BASE_FILES}
@@ -223,14 +209,6 @@ else()
                            COMMAND ${PYTHON2_EXECUTABLE} "${CMAKE_SOURCE_DIR}/src/run_interrogate.py" "${PANDA_DIR}"
                            COMMENT "Interrogate")
     endif()
-=======
-add_library(libpandadna SHARED
-    ${BASE_FILES}
-    ${SUIT_FILES}
-    ${COMPONENTS_FILES}
-    ${IGATE_FILES}
-)
->>>>>>> parent of d3dc1bf... fix mac
 
 endif()
 
