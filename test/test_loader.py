@@ -1,7 +1,7 @@
-from pandac.PandaModules import Filename
-from pandac.PandaModules import Point3
-from pandac.PandaModules import StringStream
-from pandac.PandaModules import loadPrcFileData
+from panda3d.core import Filename
+from panda3d.core import Point3
+from panda3d.core import StringStream
+from panda3d.core import loadPrcFileData
 from libpandadna import DNAStorage
 from libpandadna import DNALoader
 from libpandadna import DNAGroup
@@ -91,12 +91,12 @@ class TestLoader(unittest.TestCase):
         test_building = test_subgroup.at(1)
         check_name_class_and_children_count(test_building, DNALandmarkBuilding,
                                             "tb3:test_block", num_children=0)
-                                            
+
     def test_load_invalid_file(self):
         store = DNAStorage()
         root = self.loader.loadDNAFile(store, Filename('invalid.pdna'))
         self.assertTrue(root.isEmpty())
-        
+
         root = self.loader.loadDNAFileAI(store, Filename('invalid.pdna'))
         self.assertTrue(root is None)
 
